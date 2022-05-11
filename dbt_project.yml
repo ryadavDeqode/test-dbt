@@ -10,6 +10,7 @@ macro-paths:
 - macros
 target-path: ../build
 log-path: ../logs
+packages-install-path: /dbt
 clean-targets:
 - build
 - dbt_modules
@@ -34,6 +35,11 @@ models:
       airbyte_views:
         +tags: airbyte_internal_views
         +materialized: view
+dispatch:
+- macro_namespace: dbt_utils
+  search_order:
+  - airbyte_utils
+  - dbt_utils
 vars:
   json_column: _airbyte_data
   models_to_source:
